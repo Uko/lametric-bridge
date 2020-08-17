@@ -10,7 +10,7 @@ def instaFollowerCount(username):
         {
             'frames': [
                 {
-                    'icon': 28441,
-                    'text': follower_count(username)}
+                    'icon': 'i28441',
+                    'text': str(follower_count(username))}
             ]
         })
