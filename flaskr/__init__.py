@@ -1,16 +1,33 @@
 from flask import Flask, jsonify
 from flaskr.instagram import follower_count
+from flaskr.ukr_passport import latest_passport_status
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 
 
 @app.route('/instagram/followerCount/<username>')
-def instaFollowerCount(username):
+def insta_follower_count(username):
     return jsonify(
         {
             'frames': [
                 {
+                    # https://developer.lametric.com/icons
                     'icon': 'i28441',
-                    'text': str(follower_count(username))}
+                    'text': str(follower_count(username))
+                }
+            ]
+        })
+
+
+@app.route('/ua-passport/last-status/<code>')
+def last_passport_status(code):
+    return jsonify(
+        {
+            'frames': [
+                {
+                    'icon': 'i39634',
+                    'text': latest_passport_status(code)
+                }
             ]
         })

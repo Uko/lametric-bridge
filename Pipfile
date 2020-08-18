@@ -9,6 +9,7 @@ verify_ssl = true
 igramscraper = "*"
 flask = "*"
 gunicorn = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"
