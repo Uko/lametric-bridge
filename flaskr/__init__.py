@@ -24,7 +24,12 @@ def insta_follower_count(username):
 def last_passport_status(code):
     response = latest_passport_status(code)
 
-    days_abbr = 'д.' if response['days'] > 9 else 'дн.'
+    if response['days'] == 1:
+        days_word = 'день'
+    elif response['days'] > 0 or response['days'] < 5:
+        days_word = 'дні'
+    else:
+        days_word = 'днів'
 
     return jsonify(
         {
@@ -34,7 +39,8 @@ def last_passport_status(code):
                     'text': response['status']
                 },
                 {
-                    'text': str(response['days']) + ' ' + days_abbr + 'тому'
+                    'icon': 'a8702',
+                    'text': str(response['days']) + days_word
                 }
             ]
         })
