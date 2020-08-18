@@ -13,7 +13,7 @@ def insta_follower_count(username):
             'frames': [
                 {
                     # https://developer.lametric.com/icons
-                    'icon': 'i28441',
+                    'icon': 'i8649',
                     'text': str(follower_count(username))
                 }
             ]
@@ -22,12 +22,18 @@ def insta_follower_count(username):
 
 @app.route('/ua-passport/last-status/<code>')
 def last_passport_status(code):
+    response = latest_passport_status(code)
+
     return jsonify(
         {
             'frames': [
                 {
                     'icon': 'i39634',
-                    'text': latest_passport_status(code)
+                    'text': response['status']
+                },
+                {
+                    'icon': 'i39634',
+                    'text': '-' + str(response['days']) + ' дні'
                 }
             ]
         })
