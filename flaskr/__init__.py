@@ -32,8 +32,8 @@ def last_passport_status(code):
                     'text': response['status']
                 },
                 {
-                    'icon': 'i39634',
-                    'text': '-' + str(response['days']) + ' дні'
+                    #'icon': 'i39634',
+                    'text': str(response['days']) + ' дн. тому'
                 }
             ]
         })
