@@ -26,7 +26,7 @@ def last_passport_status(code):
 
     if response['days'] == 1:
         days_word = 'день'
-    elif response['days'] > 0 or response['days'] < 5:
+    elif 1 < response['days'] < 5:
         days_word = 'дні'
     else:
         days_word = 'днів'
