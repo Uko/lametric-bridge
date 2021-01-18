@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flaskr.instagram import follower_count
 from flaskr.ukr_passport import latest_passport_status
+from flaskr.tiktok import tiktok_followers
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -45,7 +46,23 @@ def last_passport_status(code):
                 },
                 {
                     'icon': 'a8702',
-                    'text': str(response['days']) + days_word
+                    'text': str(response['days']) + ' ' + days_word
+                }
+            ]
+        })
+
+
+@app.route('/tiktok/followers/')
+@app.route('/tiktok/followers/<username>')
+def get_tiktok_followers(username=None):
+    response = tiktok_followers(username or request.args.get('username'))
+
+    return jsonify(
+        {
+            'frames': [
+                {
+                    'icon': 'i35685',
+                    'text': str(response)
                 }
             ]
         })
